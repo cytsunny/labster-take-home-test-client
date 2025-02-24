@@ -11,8 +11,12 @@ import { catchError } from 'rxjs';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  email='';
-  buttonText = signal('Login');
+  email = '';
+  newMessage = '';
+  loading = false;
+  hidden = signal(true);
+  refreshButtonText = signal('Login');
+  newMessageButtonText = signal('Submit New Message');
   messageList: Array<UserMessage> = [];
   messageListService = inject(MessageListService);
 
@@ -23,17 +27,46 @@ export class AppComponent {
 
   getMessages(event: Event) {
     event.preventDefault();
-    this.buttonText.set('Loading...');
+    if ( this.loading ) {
+      alert('Processing previous request. Please wait.')
+      return;
+    }
+    this.refreshButtonText.set('Loading...');
+    this.hidden.set(true);
 
     this.messageListService.getMessageFromApi(this.email)
       .pipe(
         catchError(error => {
           alert(error.error.message);
+          this.refreshButtonText.set('Login');
+          this.hidden.set(true);
           throw error;
         })
       ).subscribe(messages => {
         this.messageList = messages;
-        this.buttonText.set('Refresh List');
+        this.hidden.set(false);
+        this.refreshButtonText.set('Refresh List');
       })
+  }
+
+  addMessage(event: Event) {
+    event.preventDefault();
+    if ( this.loading ) {
+      alert('Processing previous request. Please wait.')
+      return;
+    }
+    this.newMessageButtonText.set('Loading...');
+    this.messageListService.sendNewMessage(this.email, this.newMessage)
+    .pipe(
+      catchError(error => {
+        alert(error.error.message);
+        this.newMessageButtonText.set('Submit New Message');
+        throw error;
+      })
+    ).subscribe(messages => {
+      this.messageList = messages;
+      this.newMessage = '';
+      this.newMessageButtonText.set('Submit New Message');
+    });
   }
 }

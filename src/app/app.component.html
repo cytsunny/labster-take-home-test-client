@@ -2,9 +2,9 @@
   <h1>Message System Client</h1>
   <form class="email-form" (submit)="getMessages($event)">
     <input type="email" name="email" placeholder="Your email" [(ngModel)]="email"/>
-    <input type="submit" [value]="buttonText()"/>
+    <input type="submit" [value]="refreshButtonText()"/>
   </form>
-  <table>
+  <table [hidden]="hidden()">
     <thead>
       <tr>
         <th>ID</th>
@@ -28,4 +28,13 @@
       }
     </tbody>
   </table>
+  <form [hidden]="hidden()" (submit)="addMessage($event)">
+    <label>New Message:</label>
+    <textarea
+      name="message"
+      placeholder="Message to be processed"
+      [(ngModel)]="newMessage"
+    ></textarea>
+    <button type="submit">{{newMessageButtonText()}}</button>
+  </form>
 </section>
