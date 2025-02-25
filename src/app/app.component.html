@@ -28,7 +28,7 @@
       }
     </tbody>
   </table>
-  <form [hidden]="hidden()" (submit)="addMessage($event)">
+  <form class="new-message-form" [hidden]="hidden()" (submit)="addMessage($event)">
     <label>New Message:</label>
     <textarea
       name="message"
