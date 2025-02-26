@@ -1,59 +1,23 @@
-# Client
+# Message System Prototype Client
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.8.
+This is the client repository of the message system prototype. For more details about this project, please check [this repository](https://github.com/cytsunny/labster-take-home-test-backend)
 
-## Development server
+## Set Up
+For setup of the backend, please check [this repository](https://github.com/cytsunny/labster-take-home-test-backend)
 
-To start a local development server, run:
+### Prerequisite
+#### Node 18.19.1
+Angular 19.1.8 is used in this project, and it is the official requirement. For reference, Node 19.8.1 is used during development.
 
-```bash
-ng serve
-```
+#### Steps to set up
+1. Run the [set up of the backend](https://github.com/cytsunny/labster-take-home-test-backend?tab=readme-ov-file#set-up):
+2. If you have multiple version of node installed, please switch to the correct node version as listed above.
+3. Run `npm install` to install the required package.
+4. Run `ng serve` and it would tell you the link to the client. (Usually it is http://localhost:4200/ )
+5. Input the link into browser and you should see the client.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Running tests
 
-## Code scaffolding
+To execute tests, run `ng test` .
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+As there are not much complicated logic in the project, the tests are mainly integration test.
